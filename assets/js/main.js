@@ -30,7 +30,7 @@
     var endpoint = form.getAttribute('data-endpoint');
     if (!endpoint) { show(ok); form.reset(); return; }
     var data = {};
-    ['name', 'company', 'email', 'd365', 'message'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    ['name', 'company', 'email', 'title', 'users', 'devices', 'd365', 'message'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
