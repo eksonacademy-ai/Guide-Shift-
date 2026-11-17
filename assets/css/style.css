@@ -180,6 +180,7 @@ td:last-child { font-weight: 500; }
 .cta { background: var(--orange); color: #FFFFFF; }
 .cta .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .cta .eyebrow { color: #BFEAF6; }
+.cta .checks li { color: #FFFFFF; }
 .cta .checks li::before { background: #31B0D7; }
 .cta p.lead { color: #E7F6FB; }
 form { background: var(--cream); border-radius: var(--radius); padding: 28px; display: grid; gap: 16px; color: var(--ink); }
