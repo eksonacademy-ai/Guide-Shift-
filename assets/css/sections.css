@@ -7,10 +7,15 @@
 .path-to{background:var(--white);border:2px solid var(--orange)}.path-to p{color:var(--ink-soft)}
 .path-arrow{display:grid;place-items:center;font-size:30px;color:var(--orange-text);font-weight:700}
 .tag-dark,.tag-orange{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.tag-dark{color:#E8834F}.tag-orange{color:var(--orange-text)}
+.tag-dark{color:#31B0D7}.tag-orange{color:var(--orange-text)}
 @media(max-width:700px){.path{grid-template-columns:1fr}.path-arrow{transform:rotate(90deg);height:32px}}
 .cmp th:not(:first-child),.cmp td:not(:first-child){text-align:center}
 .cmp .yes{color:#1F7A4D;font-weight:700;font-size:20px}.cmp .no{color:#B3362B;font-weight:700;font-size:20px}
 .cmp .na{color:var(--ink-soft);font-size:15px}.cmp .eos{color:#B3362B}
 .features.four{grid-template-columns:repeat(4,1fr)}
 @media(max-width:980px){.features.four{grid-template-columns:1fr 1fr}}@media(max-width:560px){.features.four{grid-template-columns:1fr}}
+.mail-card{background:#fff;color:#183B48;border-radius:var(--radius);padding:36px;display:grid;gap:16px;box-shadow:0 10px 30px rgba(24,59,72,.18)}
+.mail-card h3{font-size:24px;color:#183B48}.mail-card p{color:#44606C}
+.mail-addr{font-weight:700;font-size:clamp(20px,3vw,26px);color:#0B627D;text-decoration:none;word-break:break-all}
+.mail-addr:hover{text-decoration:underline}
+.mail-card .btn{justify-self:start}
