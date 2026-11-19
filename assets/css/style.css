@@ -38,7 +38,7 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange-text); margin-bottom: 14px; }
 .lead { font-size: 20px; color: var(--ink-soft); max-width: 62ch; }
 .section-head { display: grid; gap: 16px; margin-bottom: 48px; max-width: 760px; }
-.btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font-weight: 700; font-size: 17px; text-decoration: none; border: 2px solid transparent; transition: background .2s, color .2s, border-color .2s; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 6px; font-weight: 700; font-size: 17px; text-decoration: none; border: 2px solid transparent; transition: background .2s, color .2s, border-color .2s; }
 .btn-primary { background: var(--orange); color: #FFFFFF; }
 .btn-primary:hover { background: #094E64; }
 .btn-ghost { border-color: currentColor; }

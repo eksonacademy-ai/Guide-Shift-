@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Guide Shift by EKSON Technology">
@@ -32,8 +32,8 @@
 <link rel="preload" href="assets/fonts/rubik-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/hero.webp" as="image" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=5">
-<link rel="stylesheet" href="assets/css/sections.css?v=5">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
+<link rel="stylesheet" href="assets/css/sections.css?v=7">
 
 <script type="application/ld+json">
 {
@@ -159,13 +159,18 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#main"><b>Guide Shift</b><span>by EKSON Technology</span></a>
+    <a class="brand" href="#main" aria-label="Guide Shift home"><svg class="brand-mark" viewBox="0 0 120 84" width="46" height="32" aria-hidden="true" focusable="false"><rect class="pad" x="14" y="29" width="10" height="28" rx="4.5" fill="#183B48"/>
+<rect class="pad" x="96" y="29" width="10" height="28" rx="4.5" fill="#183B48"/>
+<path d="M29 31C29 21 37 16.5 47 15.5h26C83 16.5 91 21 91 31v21c0 14-10 19-19 15-6-2.5-8-9.5-12-9.5S54 64.500 48 67c-9 4-19-1-19-15z" fill="#183B48"/>
+<path d="M37 26.500C50 22.500 70 22.500 83 26.500" fill="none" stroke="#F4F5F6" stroke-width="2.600" stroke-linecap="round" opacity=".55"/>
+<polyline class="chev c1" points="66,34 74.500,42.500 66,51" fill="none" stroke="#2596C0" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline class="chev c2" points="77,34 85.500,42.500 77,51" fill="none" stroke="#31B0D7" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text"><b>Guide <i>Shift</i></b><small>by EKSON Technology</small></span></a>
     <nav class="nav" aria-label="Main navigation">
       <a href="#process">How it works</a>
       <a href="#compare">What carries over</a>
       <a href="#deployment">Deployment</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-primary" href="mailto:info@eksontech.com?subject=Guide%20Shift%20migration%20enquiry&amp;body=Company%3A%0D%0ANumber%20of%20guides%3A%0D%0AHeadsets%20in%20use%3A%0D%0ASites%3A">Get a quote</a>
+      <a class="btn btn-primary" href="#contact">Get started</a>
     </nav>
   </div>
 </header>
@@ -178,7 +183,7 @@
         <h1 id="hero-title">Your Dynamics 365 Guides library, continued and extended</h1>
         <p class="lead">Guide Shift carries your procedures and remote-support workflows to a platform that is maintained, multi-device and backed by a dedicated engineering and 3D team.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:info@eksontech.com?subject=Guide%20Shift%20migration%20enquiry&amp;body=Company%3A%0D%0ANumber%20of%20guides%3A%0D%0AHeadsets%20in%20use%3A%0D%0ASites%3A">Get a migration quote</a>
+          <a class="btn btn-primary" href="#contact">Get started</a>
           <a class="btn btn-ghost" href="#process">How it works</a>
         </div>
       </div>
@@ -361,12 +366,41 @@
           <li>Competitive pricing from an in-house team</li>
         </ul>
       </div>
-      <div class="mail-card">
-        <h3>Email our migration team</h3>
-        <p>Tell us how many guides, headsets and sites you have. We will reply with a migration plan and a quote.</p>
-        <a class="mail-addr" href="mailto:info@eksontech.com">info@eksontech.com</a>
-        <a class="btn btn-primary" href="mailto:info@eksontech.com?subject=Guide%20Shift%20migration%20enquiry&amp;body=Company%3A%0D%0ANumber%20of%20guides%3A%0D%0AHeadsets%20in%20use%3A%0D%0ASites%3A">Email us for a quote</a>
-      </div>
+      <form id="demo-form" novalidate autocomplete="on">
+        <h3>Contact us</h3>
+        <p class="form-intro">Tell us about your environment and we will prepare a tailored migration plan and quote.</p>
+        <div class="form-row">
+          <label for="f-name">Full name *<input id="f-name" name="name" autocomplete="name" maxlength="100" required></label>
+          <label for="f-company">Company name *<input id="f-company" name="company" autocomplete="organization" maxlength="120" required></label>
+        </div>
+        <div class="form-row">
+          <label for="f-role">Role in company *<input id="f-role" name="role" autocomplete="organization-title" maxlength="100" required></label>
+          <label for="f-phone">Phone (optional)<input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+        </div>
+        <label for="f-d365">Do you use Dynamics 365 Guides today? *
+          <select id="f-d365" name="d365" required>
+            <option value="">Select an option</option>
+            <option>Yes, in production</option>
+            <option>Yes, in a pilot or trial</option>
+            <option>No, we are starting from scratch</option>
+          </select>
+        </label>
+        <div class="form-row">
+          <label for="f-guides">Approx. number of guides<input id="f-guides" name="guides" inputmode="numeric" maxlength="10"></label>
+          <label for="f-devices">Headsets in use<input id="f-devices" name="devices" placeholder="e.g. HoloLens 2, Quest 3" maxlength="100"></label>
+        </div>
+        <label for="f-deploy">Preferred deployment
+          <select id="f-deploy" name="deploy">
+            <option value="">Not sure yet</option>
+            <option>Cloud</option>
+            <option>On-premises</option>
+          </select>
+        </label>
+        <label for="f-msg">Additional details<textarea id="f-msg" name="message" maxlength="2000"></textarea></label>
+        <button class="btn btn-primary" type="submit">Submit inquiry</button>
+        <p class="form-msg" id="form-msg" role="status" hidden></p>
+        <p class="form-note">This opens your email app with the details filled in, addressed to <a href="mailto:info@eksontech.com">info@eksontech.com</a>. You can also write to us directly at that address.</p>
+      </form>
     </div>
   </section>
 </main>
@@ -378,6 +412,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=5" defer></script>
+<script src="assets/js/main.js?v=7" defer></script>
 </body>
 </html>

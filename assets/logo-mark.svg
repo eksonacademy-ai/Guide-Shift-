@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 84" role="img" aria-label="Guide Shift"><rect x="14" y="29" width="10" height="28" rx="4.5" fill="#183B48"/>
+<rect x="96" y="29" width="10" height="28" rx="4.5" fill="#183B48"/>
+<path d="M29 31C29 21 37 16.5 47 15.5h26C83 16.5 91 21 91 31v21c0 14-10 19-19 15-6-2.5-8-9.5-12-9.5S54 64.500 48 67c-9 4-19-1-19-15z" fill="#183B48"/>
+<path d="M37 26.500C50 22.500 70 22.500 83 26.500" fill="none" stroke="#F4F5F6" stroke-width="2.600" stroke-linecap="round" opacity=".55"/>
+<polyline points="66,34 74.500,42.500 66,51" fill="none" stroke="#2596C0" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="77,34 85.500,42.500 77,51" fill="none" stroke="#31B0D7" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/></svg>
