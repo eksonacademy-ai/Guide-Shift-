@@ -62,8 +62,8 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .hero { padding-block: clamp(48px, 7vw, 88px); }
 .hero .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: center; }
 .hero-copy { display: grid; gap: 24px; min-width: 0; }
-.deadline { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 999px; background: var(--ink); color: var(--on-dark); font-size: 15px; font-weight: 500; width: fit-content; }
-.deadline strong { background: var(--orange); color: #FFFFFF; border-radius: 999px; padding: 4px 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.deadline { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 6px; background: var(--ink); color: var(--on-dark); font-size: 15px; font-weight: 500; width: fit-content; }
+.deadline strong { background: var(--orange); color: #FFFFFF; border-radius: 4px; padding: 4px 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-actions .btn { padding: 14px 22px; font-size: 16px; }
 .hero-media { position: relative; min-width: 0; }
@@ -126,7 +126,7 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .band-dark .checks b { color: var(--on-dark); }
 .band-dark .shot { background: var(--cream); border-color: transparent; }
 .devices { display: flex; flex-wrap: wrap; gap: 10px; }
-.chip { font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(244,245,246,.35); }
+.chip { font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(244,245,246,.35); }
 .chip.soon { border-style: dashed; color: var(--on-dark-soft); }
 
 /* Two cards */
@@ -185,7 +185,7 @@ td:last-child { font-weight: 500; }
 .cta p.lead { color: #E7F6FB; }
 form { background: var(--cream); border-radius: var(--radius); padding: 28px; display: grid; gap: 16px; color: var(--ink); }
 label { display: grid; gap: 6px; font-size: 15px; font-weight: 500; }
-input, select, textarea { font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 10px; border: 1px solid #B6CAD3; background: #FFFFFF; color: var(--ink); width: 100%; }
+input, select, textarea { font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 6px; border: 1px solid #B6CAD3; background: #FFFFFF; color: var(--ink); width: 100%; }
 textarea { min-height: 96px; resize: vertical; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-msg { font-size: 15px; color: #2E6B3A; font-weight: 500; }
