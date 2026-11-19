@@ -42,33 +42,51 @@
     });
   }
 
-  // Contact form: builds an email to info@eksontech.com from the entered details.
+  // Contact form. If data-endpoint is set (Formspree / Web3Forms / own handler) the
+  // inquiry is sent directly to info@eksontech.com; otherwise it opens an email draft.
   var form = document.getElementById('demo-form');
   if (!form) return;
   var msg = document.getElementById('form-msg');
+  var btn = form.querySelector('button[type="submit"]');
   function show(text, isError) {
     msg.hidden = false;
     msg.textContent = text;
     msg.className = 'form-msg' + (isError ? ' error' : '');
   }
+  var KEYS = ['name', 'company', 'email', 'role', 'phone', 'd365', 'guides', 'devices', 'deploy', 'message'];
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    var f = function (k) { return form.elements[k].value.trim() || '-'; };
-    var lines = [
-      'Name: ' + f('name'),
-      'Company: ' + f('company'),
-      'Role: ' + f('role'),
-      'Phone: ' + f('phone'),
-      'Uses Dynamics 365 Guides: ' + f('d365'),
-      'Number of guides: ' + f('guides'),
-      'Headsets in use: ' + f('devices'),
-      'Preferred deployment: ' + f('deploy'),
-      '',
-      'Details:',
-      form.elements['message'].value.trim() || '-'
-    ];
-    var subject = 'Guide Shift inquiry - ' + form.elements['company'].value.trim();
+    if (form.elements['website'] && form.elements['website'].value) { form.reset(); return; }
+    var data = {};
+    KEYS.forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    var subject = 'Guide Shift inquiry - ' + data.company;
+    var endpoint = form.getAttribute('data-endpoint');
+    if (endpoint) {
+      var payload = { subject: subject, from_name: data.name, replyto: data.email, _replyto: data._replyto };
+      KEYS.forEach(function (k) { payload[k] = data[k]; });
+      var key = form.getAttribute('data-access-key');
+      if (key) payload.access_key = key;
+      btn.disabled = true;
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer'
+      }).then(function (r) {
+        if (!r.ok) throw new Error('bad status');
+        form.reset();
+        show('Thank you. Your inquiry has been sent and our team will contact you shortly.');
+      }).catch(function () {
+        show('Sorry, we could not send your inquiry. Please email us at info@eksontech.com.', true);
+      }).then(function () { btn.disabled = false; });
+      return;
+    }
+    var f = function (k) { return data[k] || '-'; };
+    var lines = ['Name: ' + f('name'), 'Company: ' + f('company'), 'Work email: ' + f('email'), 'Role: ' + f('role'),
+      'Phone: ' + f('phone'), 'Uses Dynamics 365 Guides: ' + f('d365'), 'Number of guides: ' + f('guides'),
+      'Headsets in use: ' + f('devices'), 'Preferred deployment: ' + f('deploy'), '', 'Details:', f('message')];
     window.location.href = 'mailto:info@eksontech.com?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(lines.join('\r\n'));
     show('Your email app should open with your details. If it does not, please write to info@eksontech.com.');
