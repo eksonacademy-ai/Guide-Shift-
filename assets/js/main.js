@@ -75,11 +75,14 @@
         credentials: 'omit',
         referrerPolicy: 'no-referrer'
       }).then(function (r) {
-        if (!r.ok) throw new Error('bad status');
-        form.reset();
-        show('Thank you. Your inquiry has been sent and our team will contact you shortly.');
-      }).catch(function () {
-        show('Sorry, we could not send your inquiry. Please email us at info@eksontech.com.', true);
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (!r.ok || d.success === false) throw new Error(d.message || ('Server replied ' + r.status));
+          form.reset();
+          show('Thank you. Your inquiry has been sent and our team will contact you shortly.');
+        });
+      }).catch(function (err) {
+        var why = (err && err.message === 'Failed to fetch') ? 'connection blocked by the browser or network' : (err && err.message) || 'unknown error';
+        show('Sorry, we could not send your inquiry (' + why + '). Please email us at info@eksontech.com.', true);
       }).then(function () { btn.disabled = false; });
       return;
     }
