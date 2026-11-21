@@ -53,14 +53,15 @@
     msg.textContent = text;
     msg.className = 'form-msg' + (isError ? ' error' : '');
   }
-  var KEYS = ['name', 'company', 'email', 'role', 'phone', 'd365', 'guides', 'devices', 'deploy', 'message'];
+  var LABELS = { name: 'Name', company: 'Company', email: 'Work email', role: 'Role', phone: 'Phone', d365: 'Uses Dynamics 365 Guides', guides: 'Number of guides', devices: 'Headsets in use', deploy: 'Preferred deployment', country: 'Country or region', type: 'Business type', site: 'Website', message: 'Details' };
+  var KEYS = Array.prototype.map.call(form.elements, function (el) { return el.name; }).filter(function (n, i, a) { return n && n !== 'website' && a.indexOf(n) === i; });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (form.elements['website'] && form.elements['website'].value) { form.reset(); return; }
     var data = {};
     KEYS.forEach(function (k) { data[k] = form.elements[k].value.trim(); });
-    var subject = 'Guide Shift inquiry - ' + data.company;
+    var subject = (form.getAttribute('data-subject') || 'Guide Shift inquiry') + ' - ' + data.company;
     var endpoint = form.getAttribute('data-endpoint');
     if (endpoint) {
       var payload = { subject: subject, from_name: data.name, replyto: data.email, _replyto: data._replyto };
@@ -87,9 +88,7 @@
       return;
     }
     var f = function (k) { return data[k] || '-'; };
-    var lines = ['Name: ' + f('name'), 'Company: ' + f('company'), 'Work email: ' + f('email'), 'Role: ' + f('role'),
-      'Phone: ' + f('phone'), 'Uses Dynamics 365 Guides: ' + f('d365'), 'Number of guides: ' + f('guides'),
-      'Headsets in use: ' + f('devices'), 'Preferred deployment: ' + f('deploy'), '', 'Details:', f('message')];
+    var lines = KEYS.map(function (k) { return (LABELS[k] || k) + ': ' + (data[k] || '-'); });
     window.location.href = 'mailto:info@eksontech.com?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(lines.join('\r\n'));
     show('Your email app should open with your details. If it does not, please write to info@eksontech.com.');
