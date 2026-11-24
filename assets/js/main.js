@@ -35,7 +35,7 @@
   onScroll();
 
   // Reveal-on-scroll with a small stagger inside each group.
-  var targets = document.querySelectorAll('.section-head, .pillar, .feature, .price-card, .industry, .option, .card, .steps li, .table-wrap, .stat, .bars, .faq details, .split > *, .cta .stack, .cta form');
+  var targets = document.querySelectorAll('.section-head, .pillar, .feature, .price-card, .logo-card, .industry, .option, .card, .steps li, .table-wrap, .stat, .bars, .faq details, .split > *, .cta .stack, .cta form');
   if ('IntersectionObserver' in window && targets.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
