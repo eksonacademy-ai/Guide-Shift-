@@ -61,7 +61,7 @@
     msg.textContent = text;
     msg.className = 'form-msg' + (isError ? ' error' : '');
   }
-  var LABELS = { name: 'Name', company: 'Company', email: 'Work email', role: 'Role', phone: 'Phone', d365: 'Uses Dynamics 365 Guides', guides: 'Number of guides', devices: 'Headsets in use', country: 'Country or region', type: 'Business type', site: 'Website', message: 'Details' };
+  var LABELS = { name: 'Name', company: 'Company', email: 'Work email', role: 'Role', phone: 'Phone', d365: 'Uses Dynamics 365 Guides', guides: 'Number of guides', devices: 'Devices in use', country: 'Country or region', type: 'Business type', site: 'Website', message: 'Details' };
   var KEYS = Array.prototype.map.call(form.elements, function (el) { return el.name; }).filter(function (n, i, a) { return n && n !== 'website' && a.indexOf(n) === i; });
   form.addEventListener('submit', function (e) {
     e.preventDefault();

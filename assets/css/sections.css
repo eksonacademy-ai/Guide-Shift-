@@ -73,7 +73,7 @@ form h3{font-size:24px}.form-intro,.form-note{color:#44606C;font-size:15px}.form
 .partner-panel{background:#183B48;color:#fff;border-radius:var(--radius);padding:40px;display:grid;gap:14px;align-content:center}
 .partner-panel .eyebrow{color:#BFEAF6}.partner-panel .panel-big{font-size:clamp(24px,3vw,32px);font-weight:700;line-height:1.2}
 .partner-panel p:last-child{color:#B6CAD3}
-.note a{color:#0B627D;font-weight:600}
+.note a{color:#31B0D7;font-weight:600;text-decoration:underline}
 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .stat{display:grid;gap:6px;align-content:start}
@@ -106,3 +106,21 @@ form h3{font-size:24px}.form-intro,.form-note{color:#44606C;font-size:15px}.form
 .price-card.alt{background:#fff;color:#183B48;border:1px solid #D3DDE2;box-shadow:none}
 .price-card.alt .price-label,.price-card.alt .cur{color:#0B627D}
 .price-card.alt .checks li{color:#44606C}
+
+/* Pricing redesign */
+.pricing-grid{gap:28px}
+.pricing-grid .price-card{padding:34px 30px;border-radius:16px;gap:0}
+.price-tag{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:4px;background:rgba(49,176,215,.2);color:#BFEAF6;margin-bottom:18px}
+.price-card.alt .price-tag{background:#E7EEF1;color:#0B627D}
+.pricing-grid .price-label{font-size:26px;font-weight:700;letter-spacing:0;text-transform:none;color:#fff}
+.price-card.alt .price-label{color:#183B48}
+.price-desc{font-size:15px;line-height:1.5;color:#B6CAD3;margin:6px 0 22px}
+.price-card.alt .price-desc{color:#44606C}
+.pricing-grid .price{font-size:clamp(52px,5vw,64px);line-height:1;margin:0;display:flex;align-items:baseline}
+.price .per{font-size:15px;font-weight:600;letter-spacing:0;margin-left:10px;color:#B6CAD3}
+.price-card.alt .per{color:#44606C}
+.pricing-grid .checks{margin:26px 0 28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);width:100%}
+.price-card.alt .checks{border-top-color:#D3DDE2}
+.pricing-grid .btn{width:100%;text-align:center;justify-content:center}
+.pricing-note{text-align:center;color:#44606C;margin-top:30px;font-size:15px}
+.pricing-note a{color:#0B627D;font-weight:600;text-decoration:underline}
