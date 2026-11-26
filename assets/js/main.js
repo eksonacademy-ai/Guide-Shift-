@@ -50,8 +50,11 @@
     });
   }
 
-  // Contact form. If data-endpoint is set (Formspree / Web3Forms / own handler) the
-  // inquiry is sent directly to CS@ucg.ae; otherwise it opens an email draft.
+  // Contact form. If data-endpoint is set (Web3Forms) the inquiry is sent by email to every
+  // recipient. Web3Forms binds one access key to one mailbox, so the form lists one key per
+  // recipient in data-access-keys and submits once per key. Otherwise it opens an email draft.
+  var RECIPIENTS = ['Cs@guideshift.ltd', 'Cs@ucg.ae'];
+  var KEY_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   var form = document.getElementById('demo-form');
   if (!form) return;
   var msg = document.getElementById('form-msg');
@@ -72,33 +75,48 @@
     var subject = (form.getAttribute('data-subject') || 'GuideShift inquiry') + ' - ' + data.company;
     var endpoint = form.getAttribute('data-endpoint');
     if (endpoint) {
-      var payload = { subject: subject, from_name: data.name, replyto: data.email, _replyto: data._replyto };
-      KEYS.forEach(function (k) { payload[k] = data[k]; });
-      var key = form.getAttribute('data-access-key');
-      if (key) payload.access_key = key;
+      var base = { subject: subject, from_name: data.name, replyto: data.email };
+      KEYS.forEach(function (k) { base[k] = data[k]; });
+      var keys = (form.getAttribute('data-access-keys') || form.getAttribute('data-access-key') || '')
+        .split(',').map(function (k) { return k.trim(); }).filter(function (k) { return KEY_RE.test(k); });
+      if (!keys.length) keys = [''];
+      function send(key) {
+        var payload = {};
+        Object.keys(base).forEach(function (k) { payload[k] = base[k]; });
+        if (key) payload.access_key = key;
+        return fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer'
+        }).then(function (r) {
+          return r.json().catch(function () { return {}; }).then(function (d) {
+            if (!r.ok || d.success === false) throw new Error(d.message || ('Server replied ' + r.status));
+            return true;
+          });
+        });
+      }
       btn.disabled = true;
-      fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
-        credentials: 'omit',
-        referrerPolicy: 'no-referrer'
-      }).then(function (r) {
-        return r.json().catch(function () { return {}; }).then(function (d) {
-          if (!r.ok || d.success === false) throw new Error(d.message || ('Server replied ' + r.status));
+      var failures = [];
+      Promise.all(keys.map(function (k) {
+        return send(k).then(function () { return true; }, function (err) { failures.push(err); return false; });
+      })).then(function (results) {
+        if (results.some(Boolean)) {
           form.reset();
           show('Thank you. Your inquiry has been sent and our team will contact you shortly.');
-        });
-      }).catch(function (err) {
-        var why = (err && err.message === 'Failed to fetch') ? 'connection blocked by the browser or network' : (err && err.message) || 'unknown error';
-        show('Sorry, we could not send your inquiry (' + why + '). Please email us at CS@ucg.ae.', true);
+        } else {
+          var err = failures[0];
+          var why = (err && err.message === 'Failed to fetch') ? 'connection blocked by the browser or network' : (err && err.message) || 'unknown error';
+          show('Sorry, we could not send your inquiry (' + why + '). Please email us at ' + RECIPIENTS.join(' or ') + '.', true);
+        }
       }).then(function () { btn.disabled = false; });
       return;
     }
     var f = function (k) { return data[k] || '-'; };
     var lines = KEYS.map(function (k) { return (LABELS[k] || k) + ': ' + (data[k] || '-'); });
-    window.location.href = 'mailto:CS@ucg.ae?subject=' + encodeURIComponent(subject) +
+    window.location.href = 'mailto:' + RECIPIENTS.join(',') + '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(lines.join('\r\n'));
-    show('Your email app should open with your details. If it does not, please write to CS@ucg.ae.');
+    show('Your email app should open with your details. If it does not, please write to ' + RECIPIENTS.join(' or ') + '.');
   });
 })();
