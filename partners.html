@@ -34,8 +34,9 @@
 <link rel="preload" href="assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/hero.webp" as="image" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=18">
-<link rel="stylesheet" href="assets/css/sections.css?v=18">
+<script src="assets/js/preload.js?v=19"></script>
+<link rel="stylesheet" href="assets/css/style.css?v=19">
+<link rel="stylesheet" href="assets/css/sections.css?v=19">
 
 <script type="application/ld+json">
 {
@@ -59,6 +60,13 @@
 </script>
 </head>
 <body>
+<div id="preloader" class="preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <svg class="pl-mark" viewBox="0 0 120 84" focusable="false"><rect x="14" y="29" width="10" height="28" rx="4.5" fill="#183B48"/><rect x="96" y="29" width="10" height="28" rx="4.5" fill="#183B48"/><path d="M29 31C29 21 37 16.5 47 15.5h26C83 16.5 91 21 91 31v21c0 14-10 19-19 15-6-2.5-8-9.5-12-9.5S54 64.500 48 67c-9 4-19-1-19-15z" fill="#183B48"/><path d="M37 26.500C50 22.500 70 22.500 83 26.500" fill="none" stroke="#F4F5F6" stroke-width="2.600" stroke-linecap="round" opacity=".55"/><polyline class="pl-c pl-c1" points="66,34 74.500,42.500 66,51" fill="none" stroke="#2596C0" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/><polyline class="pl-c pl-c2" points="77,34 85.500,42.500 77,51" fill="none" stroke="#31B0D7" stroke-width="5.500" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="pl-word">Guide<span>Shift</span></div>
+    <div class="pl-bar"><span></span></div>
+  </div>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
@@ -198,20 +206,6 @@
     </div>
   </section>
 
-  <section id="resellers" class="band-sand" aria-labelledby="res-title">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Our resellers</p>
-        <h2 id="res-title">Join the partners already selling GuideShift</h2>
-      </div>
-      <div class="logo-grid">
-        <a class="logo-card" href="https://ucg.ae" target="_blank" rel="noopener" aria-label="UCG (United Communication Group)"><img src="assets/logos/ucg.svg" alt="UCG, United Communication Group" width="994" height="298" loading="lazy"></a>
-        <a class="logo-card" href="https://ecc.ae" target="_blank" rel="noopener" aria-label="ECC (Eagles Communication Consultancy)"><img src="assets/logos/ecc.png" alt="ECC, Eagles Communication Consultancy" width="720" height="207" loading="lazy"></a>
-        <a class="logo-card" href="https://sniperag.com" target="_blank" rel="noopener" aria-label="Sniper AG"><img src="assets/logos/sniper-ag.svg" alt="Sniper AG" width="222" height="55" loading="lazy"></a>
-      </div>
-    </div>
-  </section>
-
   <section id="apply" aria-labelledby="apply-title" class="cta">
     <div class="wrap">
       <div class="stack">
@@ -223,7 +217,7 @@
           <li>Support from our engineering and 3D team</li>
         </ul>
       </div>
-      <form id="demo-form" novalidate autocomplete="on" data-endpoint="https://api.web3forms.com/submit" data-access-keys="2da8afee-6686-4442-be5d-e2a029791b66,PASTE-SECOND-WEB3FORMS-KEY-HERE" data-subject="GuideShift partner application">
+      <form id="demo-form" novalidate autocomplete="on" data-endpoint="https://api.web3forms.com/submit" data-access-keys="0628717b-1a82-4a10-a4f8-7396e53215af" data-subject="GuideShift partner application">
         <h3>Partner application</h3>
         <p class="form-intro">Tell us about your business and we will contact you about the next steps.</p>
         <div class="form-row">
@@ -274,6 +268,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=18" defer></script>
+<script src="assets/js/main.js?v=19" defer></script>
 </body>
 </html>

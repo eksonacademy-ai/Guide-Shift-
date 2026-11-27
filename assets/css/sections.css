@@ -125,8 +125,3 @@ form h3{font-size:24px}.form-intro,.form-note{color:#44606C;font-size:15px}.form
 .pricing-note{text-align:center;color:#44606C;margin-top:30px;font-size:15px}
 .pricing-note a{color:#0B627D;font-weight:600;text-decoration:underline}
 
-.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto}
-@media(max-width:760px){.logo-grid{grid-template-columns:1fr}}
-.logo-card{display:grid;place-items:center;height:150px;padding:28px;background:#fff;border:1px solid #D3DDE2;border-radius:12px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.logo-card img{max-height:64px;max-width:100%;width:auto;height:auto;object-fit:contain}
-.logo-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -16px rgba(24,59,72,.35);border-color:#31B0D7}

@@ -1,5 +1,24 @@
 (function () {
   'use strict';
+  // Preloader: shown once per session, hidden when the page has loaded (never shorter than 700 ms,
+  // never longer than 3 s). A CSS failsafe also hides it if scripts are blocked.
+  var pl = document.getElementById('preloader');
+  if (pl) {
+    var plDone = false;
+    var plStart = window.__plStart || Date.now();
+    var plHide = function () {
+      if (plDone) return;
+      plDone = true;
+      setTimeout(function () {
+        pl.classList.add('pl-done');
+        setTimeout(function () { if (pl.parentNode) pl.parentNode.removeChild(pl); }, 700);
+      }, Math.max(0, 700 - (Date.now() - plStart)));
+    };
+    if (document.readyState === 'complete') plHide();
+    else window.addEventListener('load', plHide);
+    setTimeout(plHide, 3000);
+  }
+
   // Days left until Dynamics 365 Guides end of support (31 Dec 2026, end of day)
   var el = document.getElementById('days-left');
   if (el) {
@@ -35,7 +54,7 @@
   onScroll();
 
   // Reveal-on-scroll with a small stagger inside each group.
-  var targets = document.querySelectorAll('.section-head, .pillar, .feature, .price-card, .logo-card, .industry, .option, .card, .steps li, .table-wrap, .stat, .bars, .faq details, .split > *, .cta .stack, .cta form');
+  var targets = document.querySelectorAll('.section-head, .pillar, .feature, .price-card, .industry, .option, .card, .steps li, .table-wrap, .stat, .bars, .faq details, .split > *, .cta .stack, .cta form');
   if ('IntersectionObserver' in window && targets.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -51,9 +70,9 @@
   }
 
   // Contact form. If data-endpoint is set (Web3Forms) the inquiry is sent by email to every
-  // recipient. Web3Forms binds one access key to one mailbox, so the form lists one key per
-  // recipient in data-access-keys and submits once per key. Otherwise it opens an email draft.
-  var RECIPIENTS = ['Cs@guideshift.ltd', 'Cs@ucg.ae'];
+  // recipient. Web3Forms binds one access key to one mailbox; the key in data-access-keys is bound to
+  // Cs@guideshift.ltd. (More recipients: list one extra key per mailbox, comma separated.) Otherwise it opens an email draft.
+  var RECIPIENTS = ['Cs@guideshift.ltd'];
   var KEY_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   var form = document.getElementById('demo-form');
   if (!form) return;
